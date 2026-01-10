@@ -1,6 +1,7 @@
 import asyncio  # 添加 asyncio 导入
 import configparser
 import datetime
+import os
 from pathlib import Path
 
 from loguru import logger
@@ -75,7 +76,8 @@ if __name__ == "__main__":
     # config 文件夹下所有.sh
     CURL_PATH = Path("./config")
     CONFIG_PATH = Path("./config/key.ini")
-    READ_NUM = 60
+    # 阅读时长，单位分钟，默认60分钟（与main.py保持一致的环境变量名）
+    READ_NUM = int(os.getenv("READ_MINUTE") or 60)
 
     setup_logger()
     # WXPUSHER_SPT = load_config() if CONFIG_PATH.exists() else None
